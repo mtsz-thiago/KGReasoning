@@ -38,10 +38,9 @@ def set_global_seed(seed):
 def index_dataset(dataset_name, force=False):
     print('Indexing dataset {0}'.format(dataset_name))
     base_path = 'data/{0}/'.format(dataset_name)
-    # files = ['train.txt', 'valid.txt', 'test.txt']
-    # indexified_files = ['train_indexified.txt', 'valid_indexified.txt', 'test_indexified.txt']
-    files = ['train.txt']
-    indexified_files = ['train_indexified.txt']
+    files = ['train.txt', 'valid.txt', 'test.txt']
+    indexified_files = ['train_indexified.txt', 'valid_indexified.txt', 'test_indexified.txt']
+    
     return_flag = True
     for i in range(len(indexified_files)):
         if not osp.exists(osp.join(base_path, indexified_files[i])):
@@ -249,8 +248,8 @@ def generate_queries(dataset, query_structures, gen_num, max_ans_num, gen_train,
         test_ent_in, test_ent_out = construct_graph(base_path, indexified_files[:3])
         test_only_ent_in, test_only_ent_out = construct_graph(base_path, indexified_files[2:3])
 
-    ent2id = pickle.load(open(os.path.join(base_path, "ent2ind.pkl"), 'rb'))
-    rel2id = pickle.load(open(os.path.join(base_path, "rel2ind.pkl"), 'rb'))
+    ent2id = pickle.load(open(os.path.join(base_path, "ent2id.pkl"), 'rb'))
+    rel2id = pickle.load(open(os.path.join(base_path, "rel2id.pkl"), 'rb'))
 
     train_queries = defaultdict(set)
     train_tp_answers = defaultdict(set)
